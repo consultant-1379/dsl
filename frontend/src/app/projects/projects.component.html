@@ -1,0 +1,45 @@
+<div class="workspace">
+    <section class="latest col mb-4">
+        <section class="projects-header">
+            <div class="row no-gutters align-items-center">
+                <h1 id = 'workspace-header' class="col-auto ml-2 pl-2 pr-4">
+                  <span id = 'workspace-title'>Workspace</span>
+                  <span id = 'workspace-subtitle'>Create and manage your projects</span>
+                </h1>
+            </div>
+        </section>
+        <section class="row no-gutters p-3">
+            <div *ngIf="isProjects" class="col-12">
+                <div class="row no-gutters">
+                    <div class="col-2 mr-1">
+                        <h3>Projects</h3>
+                        <ws-toolbar></ws-toolbar>
+                        <mat-nav-list class="col list-projects">
+                            <a [ngClass]="{'active':isSelectedProject===i}" mat-list-item (click)="displayProjectDetails(p.id,i)"
+                            *ngFor="let p of projects;index as i"matTooltip={{p.name}} [matTooltipPosition]="'right'" style="cursor:pointer;">
+                              <!--Checks if the length of the name is longer than 22 char. and slices if it is-->
+                              {{(p.name?.length>22)?(p.name | slice:0:22) + '...':(p.name)}} 
+                            </a>
+                        </mat-nav-list>
+                    </div>
+                    <div class="col" *ngIf="isCreate">
+                      <project-create [uniqueId]="uniqueId" (add)="getUserProjects()" (isCreate) = "setIsCreate($event)"></project-create>
+                    </div>
+                    <div class="col mr-3 project-infos" *ngIf="!isCreate">
+                      <mat-tab-group id = 'tabGroup' #tabGroup>
+                        <div *ngIf="projects?.length > 0; then projectDetails else createAProject"></div>
+                        <ng-template #projectDetails>
+                          <mat-tab label='Project details'>
+                            <app-user-projects></app-user-projects>
+                          </mat-tab>
+                       </ng-template>
+                       <ng-template #createAProject>
+                          <mat-tab label='Click "+" to create a project'></mat-tab>
+                       </ng-template>
+                      </mat-tab-group>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</div>

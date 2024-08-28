@@ -1,0 +1,33 @@
+footer {
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 40px;
+    background-color: #111;
+    color: #ababab;
+    .h1 {
+        font-size: 0.85rem;
+        font-family: EricssonHilda, Arial, sans-serif;
+        text-transform: uppercase;
+        color: #f8f5f5;
+        
+    }
+    button {
+        background-color: #e20000;
+        color: #fff;
+        padding: 4px;
+        border-radius: 0px !important;
+        font-size: 0.8rem;
+    }
+    .sitemap {
+        ul {
+            li {
+                margin: 20px;
+            }
+        }
+    }
+    .dsl-version {
+        text-align: right;
+        color: #ababab;
+        margin: 0px;
+    }
+}

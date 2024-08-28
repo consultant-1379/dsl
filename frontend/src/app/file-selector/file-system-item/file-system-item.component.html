@@ -1,0 +1,17 @@
+<div *ngIf="type===DIRECTORY">
+  <li>
+    <input type="radio" (click)="setSelectedFile()" name="notebook"> &nbsp;
+    <i class="far fa-folder-open "></i>&nbsp;{{fileSystemItem.name}}
+    <ul class="fsi-ul">
+      <app-file-system-item *ngFor="let child of fileSystemItem.children" [fileSystemItem]="child" [path]="path + '/' + fileSystemItem.name"></app-file-system-item>
+    </ul>
+  </li>
+  
+  
+</div>
+
+<div *ngIf="type===FILE">
+  <li>
+    <input *ngIf="isNotebook" type="radio" (click)="setSelectedFile()" name="notebook"> &nbsp;{{fileSystemItem.name}} 
+  </li>
+</div>

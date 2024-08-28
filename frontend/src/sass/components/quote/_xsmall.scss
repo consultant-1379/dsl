@@ -1,0 +1,92 @@
+.quote-box {
+        border-radius: 3px;
+        position: relative;
+        margin: 8% auto auto auto;
+        padding: 40px 50px;
+        display: inline-block;
+    
+    
+    .quote-text {
+        text-align: center;
+        height: auto;
+        clear: both;
+        font-weight: 500;
+        font-size: 1.75em;
+    i {
+        font-size: 1.0em;
+        margin-right: 0.4em;
+    }
+    }
+    
+    .quote-author {
+        width: 450px;
+        height: auto;
+        clear: both;
+        padding-top: 20px;
+        font-size: 1em;
+        text-align: right;
+    }
+    
+    .buttons {
+        margin: auto;
+        display: block;
+    }
+    
+    .buttons .button {
+        height: 38px;
+        border: none;
+        border-radius: 3px;
+        color: #fff;
+        outline: none;
+        font-size: 0.85em;
+        padding: 8px 18px 6px 18px;
+        margin-top: 30px;
+        opacity: 1;
+        cursor: pointer;
+    }
+    
+    .buttons .button:hover {
+        opacity: 0.9;
+    }
+    
+    .buttons .button#tweet-quote,
+    .buttons .button#tumblr-quote {
+        float: left;
+        padding: 0px;
+        padding-top: 8px;
+        text-align: center;
+        font-size: 1.2em;
+        margin-right: 5px;
+        height: 30px;
+        width: 40px;
+    }
+    
+    .buttons .button#new-quote {
+        float: right;
+    }
+    
+    .quote-standard__content {
+        padding-left: 40px;
+        padding-top: 10px;
+        background-image: url('../assets/images/q1.png');
+        background-position: left top;
+        background-repeat: no-repeat;
+        border-left: none;
+    }
+    
+    .quote-standard__content:after {
+        content: ' ';
+        padding-right: 40px;
+        padding-bottom: 10px;
+        background-image: url('../assets/images/q2.png');
+        background-position: right bottom;
+        background-repeat: no-repeat;
+    }
+    
+    .quote-standard__author {
+        margin-left: 40px;
+        margin-bottom: 0;
+        font-size: 1.5rem;
+        overflow: hidden;
+    }
+}

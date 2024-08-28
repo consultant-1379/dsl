@@ -1,0 +1,78 @@
+.fixed-top {
+    z-index: 5001; //raise the z-index above the z-index of the font-awesome icons
+}
+
+
+// FIXME: Figure out how to import dependency from EDS's NPM!
+// Problem is that EDS is based on Less, whereas we are using SCSS.
+.light {
+    font-size:14px;
+    color:#242424;
+    font-family: "Ericsson Hilda", Helvetica, Arial, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale
+}
+
+@font-face {
+    font-family: "Ericsson Icons";
+    src:url(/assets/fonts/Hilda/Ericsson-Icons.eot?mvqo1v);
+    src:url(/assets/fonts/Hilda/Ericsson-Icons.eot?mvqo1v#iefix) format("embedded-opentype"),
+    url(/assets/fonts/Hilda/Ericsson-Icons.ttf?mvqo1v) format("truetype"),
+    url(/assets/fonts/Hilda/Ericsson-Icons.woff?mvqo1v) format("woff"),
+    url(/assets/fonts/Hilda/Ericsson-Icons.svg?mvqo1v#Ericsson-Icons) format("svg");    
+}
+
+.icon-econ::before{content:"\e937"}
+
+.icon {
+    font-family: "Ericsson Icons" !important;
+    vertical-align: middle;
+    font-style: normal;
+    color:#242424;
+}
+
+.icon-econ {
+    padding: 0;
+    font-size: 24px;
+    padding-right: 5px;
+}
+
+.ml-3 {
+    width:80px;
+}
+
+#logo-link {
+    color:#111;
+    font-size:24px;
+}
+
+#ds-title {
+    color: red;
+}
+
+#nav-div {
+    display: inline-block;
+    width: 8%;
+}
+
+.fa-circle {
+    color:#E54040;
+}
+
+#dropdown-icon-span {
+    position:absolute;
+    z-index:500;
+    font-size:1.2rem;
+    right:18%;
+    padding-top:3px;
+}
+
+.nav-bottom-border {
+    border-top:3px solid red;
+    width:100%;
+}
+
+a:hover {
+    cursor:pointer;
+}

@@ -1,0 +1,26 @@
+.wstoolbar {
+    padding: 0px;
+    //border-radius: 5px;
+    //background-color: #fff;
+    //border: 1px solid #ccc;
+    position: relative;
+    top: 10px;
+    right: 0px;
+    z-index: 5000;
+    .active {
+        >svg {
+            color: blue;
+            cursor: pointer;
+            &:hover {
+                color: red;
+            }
+        }
+    }
+    svg[class*="fa-"] {
+        cursor: pointer;
+        color: #acafb2;
+        &:hover {
+            color: red;
+        }
+    }
+}

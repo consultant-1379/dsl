@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+
+cd frontend
+ng test --watch=false
+
+cd ..
+cd backend
+npm run test

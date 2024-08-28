@@ -1,0 +1,20 @@
+FROM node:10.13-jessie
+
+RUN apt-get update --fix-missing && \
+    apt-get -y upgrade && \
+    wget https://github.com/Yelp/dumb-init/releases/download/v1.2.2/dumb-init_1.2.2_amd64.deb && \
+    dpkg -i dumb-init_*.deb && \
+    apt-get update && \
+    apt-get install -y \
+    build-essential \
+    firefox-esr \
+    libssl-dev && \
+    npm install -g @angular/cli && \
+    # Add a chrome user and setup home dir.
+    groupadd --system chrome  && \
+    useradd --system --create-home --gid chrome --groups audio,video chrome && \
+    mkdir --parents /home/chrome/reports
+COPY . /home/chrome/dsl/
+RUN chown --recursive chrome:chrome /home/chrome
+
+WORKDIR /home/chrome/dsl

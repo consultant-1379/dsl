@@ -1,0 +1,23 @@
+#{enumerate('.col-m', 1, $cols - 1, '')} {
+  float: left;
+  margin-left: $gutter;
+}
+
+@for $i from 1 through $cols {
+  .col-m#{$i} {
+    @include cols($i);
+  }
+}
+
+@for $i from 1 through $cols {
+	.grid-m#{$i} > li{
+		@include cells($i);
+	}
+	.grid-m#{$i} > li:nth-of-type(n){
+		clear:none;
+	}
+	.grid-m#{$i} > li:nth-of-type(#{$i}n+1){
+		clear:both;
+    }
+
+}

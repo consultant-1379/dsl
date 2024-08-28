@@ -1,0 +1,45 @@
+//cross browser gradient
+@mixin gradient($start, $end){
+  background-color: $end;
+  @include background-image(linear-gradient($start, $end));
+  filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr="#{$start}", endColorStr="#{$end}");
+}
+
+//hardware accelerated transitions
+@mixin transformHW($prop: ""){
+  @include transform(#{$prop} translate3d(0,0,0));
+}
+
+ //skew 
+@mixin skew($prop){
+  @include transformHW(skew($prop));
+}
+
+//scale
+@mixin scale($prop){
+  @include transformHW(scale($prop));
+}
+
+//rotate
+@mixin rotate($prop){
+  @include transformHW(rotate($prop));
+}
+
+//grid mixins
+$one_col: (100% - ($gutter * ($cols - 1))) / $cols;
+@mixin cols($num) {
+  width: ($one_col * $num) + ($gutter * ($num - 1));
+}
+@mixin sub_cols($num_child, $num_parent) {
+  $parent_size: ($one_col * $num_parent) + ($gutter * ($num_parent - 1));
+  $child_size: ($one_col * $num_child) + ($gutter * ($num_child - 1));
+  margin-left: ($gutter / $parent_size) * 100%;
+  width: ($child_size / $parent_size) * 100%;
+}
+
+//grid list mixins
+$one_cell: (100% / $cols) * 2;
+@mixin cells($num) {
+  width: 100% / $num;
+  padding: 0 0.625em 1.25em;
+}

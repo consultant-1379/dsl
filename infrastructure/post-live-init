@@ -1,0 +1,133 @@
+#!/bin/bash
+
+# post-live-init
+# 
+# Script to generate an API access token and create a functional user for 
+# gitlab if required.
+#
+# Authors: alanna.kelly@ericsson.com 
+#          ralph.schlosser@ericsson.com
+
+# Returns a random alphanumeric string
+rand_string() {
+  echo $(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w $1 | head -n 1)
+}
+
+# Generate a random PAT for root API and a random password for functional user.
+ROOT_TOKEN=$(rand_string 16)
+USER_TOKEN=$(rand_string 16)
+JWT_SECRET=$(rand_string 16)
+PASSWORD=$(rand_string 16)
+
+# The username for a fuctional user. 
+DSL_USER=dsl-git
+
+# Check if functional user has already been made, exit if exists.
+# DSL_USER_JSON="\"username\":\"${DSL_USER}\""
+# DSL_USER_EXISTS=$(curl -v --silent -X GET "http://localhost:80/api/v4/users?private_token=wzZmRA1tEpDCGJbU&username=dsl-git" 2>&1 | grep -o ${DSL_USER_JSON})
+
+# if [ "$DSL_USER_EXISTS" == "$DSL_USER_JSON" ]; then
+#  echo "Functional user ${DSL_USER} already exists. Not creating"
+#  exit 1 
+# fi
+if [ -e /tmp/creds/gitlab-user-creds.md ]; then
+  echo "Credentials already exist. Exiting."
+  exit 0
+fi
+
+# Create access token for root.
+echo "Creating user access token for root_api."
+gitlab-rails r "token = PersonalAccessToken.new(user: User.where(id: 1).first, name: 'root_api', token: '${ROOT_TOKEN}', scopes: ['api','read_user','sudo']); token.save"'!'
+
+# Create functional user
+echo "Creating functional user."
+cat > "${PWD}"/user.json <<EOF
+{
+"email": "dsl-git@localhost",
+"password": "${PASSWORD}",
+"reset_password": "false",
+"admin": "true",
+"username": "dsl-git",
+"name": "DSL Functional Git User",
+"skip_confirmation": "true"
+}
+EOF
+  
+# Use root access token to create new user via GitLab REST API.
+curl -d "@user.json" -H 'Content-Type:application/json' -H 'Accept:application/json' -X POST "http://localhost:80/api/v4/users?private_token=${ROOT_TOKEN}"
+
+echo "Creating API access token for dsl-git."
+gitlab-rails r "token = PersonalAccessToken.new(user: User.where(id: 2).first, name: 'dsl-git_api', token: '${USER_TOKEN}', scopes: ['api','read_user','sudo']); token.save"'!'
+
+echo "Disabling root user."
+curl -X POST "http://localhost:80/api/v4/users/1/block?private_token=${ROOT_TOKEN}"
+
+# Echo PAT to log
+echo "Writing generated credentials to: ~/dsl/gitlab-user-creds.md"
+
+cat > /tmp/creds/gitlab-user-creds.md <<EOF
+# User Credentials for gitlab
+
+## dsl-git_api Access Token
+
+${USER_TOKEN}
+
+## Functional User Credentials
+
+* Username: dsl-git
+* Password: ${PASSWORD}
+EOF
+
+echo "Writing dsl frontend config file..."
+cat > /tmp/creds/frontend/production.json <<EOF
+{
+    "debugging": true,
+    "GITLAB_SERVER": "http://${GITLAB_URL}:19080",
+    "BASE_URL_GITLAB": "http://${GITLAB_URL}:19080/api/v4/",
+    "GITLAB_TOKEN": "${USER_TOKEN}",
+    "GITLAB_PRIVATE_TOKEN": "?private_token=${USER_TOKEN}",
+    "LOGIN": "http://${BACKEND_URL}:3000",
+    "DSL_BACKEND": {
+       "URL": "http://${BACKEND_URL}:3000"
+   },
+   "API_ENDPOINTS": {
+       "COUCHDB": "http://http://${COUCHDB_URL}:58080"
+   },
+   "DATABASE": {
+       "COUCHDB": "http://${COUCHDB_URL}:58080/datascience",
+       "COUCHDB_LOCAL": "http://${COUCHDB_URL}:58080/datascience",
+       "COUCHDB_BASE_URL": "http://${COUCHDB_URL}:58080"
+   },
+    "GITLAB": {
+        "USER_BY_SIGNUM": "users?username=:userid",
+        "USER_CREATE": "users%token%",
+        "PROJECTS": "projects%token%",
+        "PROJECT_BY_ID": "projects/:projectid%token%",
+        "PROJECT_BY_USERNAME_AND_PROJECTNAME": "projects/:signum%2F:projectname",
+        "PROJECTS_CREATE": "projects/user/:userid%token%&visibility=public",
+        "PROJECTS_DELETE": "projects/:signum%2F:projectname%token%",
+        "PROJECTS_USERNAME": "users%token%&username=:username",
+        "PROJECTS_USER": "users/:userid/projects%token%",
+        "FILE_CREATE": "projects/:projectid/repository/files/:filepath",
+        "FILE_DELETE": "projects/:projectid/repository/files/:filepath%token%&branch=master&commit_message=deletefile&sudo=:user",
+        "FILE_GET": "projects/:projectid/repository/files/:filepath?ref=master",
+        "REPOSITORY": "projects/:projectid/repository/tree",
+        "REPOSITORY_FILES": "projects/:projectid/repository/tree?path=:filepath"
+    }
+}
+EOF
+
+echo "Writing dsl backend config file..."
+cat > /tmp/creds/backend/production.env<<EOF
+BASE_URL_GITLAB=http://${GITLAB_URL}:19080
+GITLAB_TOKEN=${USER_TOKEN}
+COUCHDB_URL=http://${COUCHDB_URL}:58080/datascience
+LDAP_SERVER=ldap://ecd.ericsson.se:389
+LDAP_USER=dslfunc
+LDAP_PASSWORD=${LDAP_PASSWORD}
+JWT_SECRET=${JWT_SECRET}
+EOF
+
+# Tidy up
+#rm /tmp/post-gitlab-live/user.json
+  

@@ -1,0 +1,43 @@
+.divider {
+  height: 1px;
+  margin: 0;
+  background-color: #ccc;
+  box-shadow: whitesmoke 0px 1px 0px 0px;
+
+}
+.tag{
+  background-color: rgb(51, 51, 51);
+  background-color: rgba(51, 51, 51, 0.47);
+  padding: 10px 30px;
+  margin: 1px;
+  display: inline-block;
+}
+.border{
+  border: 5px solid white;
+  box-shadow: #bbb 0px 2px 0px 0px;
+}
+/* Wrapped around .top-bar to contain to grid width */
+.contain-to-grid {
+  width: 100%;
+  background: #333333; }
+  .contain-to-grid .top-bar {
+    margin-bottom: 0; }
+
+.fixed {
+  width: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  z-index: 99; }
+  .fixed.expanded:not(.top-bar) {
+    overflow-y: auto;
+    height: auto;
+    width: 100%;
+    max-height: 100%; }
+    .fixed.expanded:not(.top-bar) .title-area {
+      position: fixed;
+      width: 100%;
+      z-index: 99; }
+    .fixed.expanded:not(.top-bar) .top-bar-section {
+      z-index: 98;
+      margin-top: 45px; }

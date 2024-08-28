@@ -1,0 +1,151 @@
+    $base: #303f9f;
+    $error: #DD2C00;
+    $fontsize: 18px;
+    $smallfontsize: 0.75rem;
+    @mixin transition($args...) {
+        -webkit-transition: $args;
+        transition: $args;
+    }
+    
+    .materialInput {
+        position: relative;
+        margin: 30px 0 5px 0;
+        input,
+        textarea {
+            font-size: $fontsize;
+            padding: 10px 10px 10px 5px;
+            display: block;
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid $base;
+            box-shadow: none !important;
+            &:focus {
+                outline: none;
+            }
+        }
+        label {
+            color: #000;
+            opacity: 0.38;
+            font-size: $fontsize;
+            font-weight: normal;
+            position: absolute;
+            pointer-events: none;
+            left: 5px;
+            top: 10px;
+        }
+        input:focus~label,
+        input:required:valid~label,
+        &:not(.empty) input~label {
+            top: -20px;
+            font-size: 14px;
+            color: $base;
+            opacity: 1;
+        }
+        textarea:focus~label,
+        textarea:required:valid~label,
+        &:not(.empty) textarea~label {
+            top: -20px;
+            font-size: 14px;
+            color: $base;
+            opacity: 1;
+        }
+        &.expand {
+            input,
+            textarea,
+            label {
+                font-size: $smallfontsize;
+                padding: 5px 10px 5px 5px;
+            }
+            input~label,
+            input:required:valid~label,
+            &:not(.empty) input~label {
+                top: -20px;
+                left: 0px;
+                font-size: 14px;
+                color: $base;
+                opacity: 1;
+            }
+        }
+        .bar {
+            position: relative;
+            display: block;
+            width: 100%;
+            &:before,
+            &:after {
+                content: '';
+                height: 2px;
+                width: 0;
+                bottom: 1px;
+                position: absolute;
+                background: $base;
+            }
+            &:before {
+                left: 50%;
+            }
+            &:after {
+                right: 50%;
+            }
+        }
+        input:focus~.bar:before,
+        input:focus~.bar:after,
+        textarea:focus~.bar:before,
+        textarea:focus~.bar:after,
+        {
+            width: 50%;
+        }
+        .highlight {
+            position: absolute;
+            height: 60%;
+            width: 100px;
+            top: 25%;
+            left: 0;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        input:focus~.highlight,
+        textarea:focus~.highlight {
+            animation: inputHighlighter 0.3s ease;
+        }
+        .message {
+            opacity: 0;
+            font-size: 14px;
+            text-align: left;
+            line-height: 14px;
+            margin-top: 5px;
+            position: absolute;
+            bottom: -20px;
+        }
+        &.has-error {
+            input,
+            textarea {
+                border-color: $error;
+            }
+            .bar {
+                &:after,
+                &:before {
+                    background: $error;
+                    width: 50%;
+                }
+            }
+            .message {
+                opacity: 1;
+                color: $error;
+            }
+        }
+    }
+    
+    @media only screen and (min-width: 1008px) {
+        .materialInput {
+            @include transition(margin 0.3s);
+            label {
+                @include transition(all 0.3s);
+            }
+            .bar:before,
+            .bar:after {
+                @include transition(width 0.5s, background 0.2s);
+            }
+            .message {
+                @include transition(opacity 0.2s, color 0.2s);
+            }
+        }
+    }

@@ -1,0 +1,24 @@
+<div class="modal-body sign-in-form">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="onNoClick()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+    <div class="py-3 px-4 title-box">
+        <h2 class="mx-auto">DSL Login</h2>
+        <p class="mx-auto">Use your Ericsson signum and password to log in.</p>
+    </div>
+
+    <form class="row p-4" [formGroup]="firstFormGroup" novalidate>
+        <!-- <div *ngIf="isLoading" class="spinner-wrap">
+            <app-spinner></app-spinner>
+        </div> -->
+        <div *ngIf="!isLoading">
+            <mat-form-field class="col-sm-12 py-2">
+                <input matInput placeholder="Username" ngModel formControlName="user_name" required>
+            </mat-form-field>
+            <mat-form-field class="col-sm-12 py-2">
+                <input matInput type="password" placeholder="Password" ngModel formControlName="user_password" required (keydown)="enterToLogin($event)">
+            </mat-form-field>
+            <button class="btn btn-primary mx-auto my-2 d-block" type="button" (click)="onSubmit()">Sign in</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,4 @@
+#! /usr/bin/env bash
+
+cp scripts/commit-msg .git/hooks/commit-msg
+cp scripts/pre-push .git/hooks/pre-push

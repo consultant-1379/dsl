@@ -1,0 +1,58 @@
+.project-details {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.project-details-header {
+    background-color: #e0e0e0;
+    padding: 2rem 4rem 2rem 4rem;
+}
+.project-details-header .title {
+    padding-left: 1rem;
+    font-size: 2rem;
+    text-transform: uppercase;
+    color: red;
+}
+
+.project-details-header .subtitle {
+    text-transform:  none;
+    font-size: 1rem;
+    color: #494747;
+    margin-left: 20px;
+}
+
+.project-details-content {
+    background-color: #aeafad;
+    padding: 2rem 4rem 2rem 4rem;
+}
+
+.large-card {
+    padding: 2rem;
+    background-color: white;
+    color: black;
+}
+
+.large-card .btn {
+    background-color: #ff2000;
+    display: block;
+    border-radius: 0px;
+    color: white;
+}
+
+.project-details-footer .btn {
+    background-color: #ff2000;
+    display: inline-block;
+    border-radius: 0px;
+    color: white;
+}
+
+.project-details-footer {
+    border-top: 1px solid red;
+    background-color: white;
+    padding: 1rem 2rem 1rem 2rem;
+    color: black;
+}
+
+app-project-card-tools {
+    float: right;
+}

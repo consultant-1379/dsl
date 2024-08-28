@@ -1,0 +1,18 @@
+<mat-form-field class="hashtag-chip-list">
+  <mat-chip-list #chipList>
+      <mat-chip *ngFor="let hashtag of hashtags" 
+              [selectable]="selectable"
+              [removable]="true" (removed)="remove(hashtag)">
+          #{{hashtag}}
+          <mat-icon matChipRemove >cancel</mat-icon>
+      </mat-chip>
+      <input 
+        placeholder="Hashtags"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="true"
+        (matChipInputTokenEnd)="add($event)"
+        />
+  </mat-chip-list>
+  
+</mat-form-field>

@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+
+CONFIG=$1
+if [ "${CONFIG}" = "" ]; then
+    echo -e "No build config specified.\n\nUsage: ./scripts/build-all <CONFIG>"
+    exit -1
+fi
+
+./scripts/build-backend $CONFIG
+./scripts/build-frontend $CONFIG

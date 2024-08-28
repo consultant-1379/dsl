@@ -1,0 +1,11 @@
+<div class="fa-layers fa-fw fa-lg" *ngIf="project" (click)="onVote(project)" matTooltip="Click here if you like this project" [matTooltipPosition]="'left'" style="cursor:pointer;">
+  <span *ngIf="project.votes > 0" class="fa-layers-counter fa-2x" style="background:Tomato;position:absolute;top:0px;right:14px;">{{project.votes}}</span>
+
+  <i class="fas fa-thumbs-up m-2" data-fa-transform="shrink-4 up-2" style="color:#7c7676;cursor:pointer;" matTooltip="Open" [matTooltipPosition]="'above'"></i>
+
+</div>
+<div class="fa-layers fa-fw fa-lg" *ngIf="project" (click)="onComment()">
+  <span *ngIf="project.comments.length > 0" class="fa-layers-counter fa-2x" style="background:Tomato;position:absolute;top:0px;right:14px;">{{project.comments.length}}</span>
+  <i class="fas fa-comment-dots m-2" data-fa-transform="shrink-4 up-2" style="color:#7c7676;cursor:pointer;" matTooltip="Open" [matTooltipPosition]="'above'"></i>
+
+</div>

@@ -1,0 +1,33 @@
+<mat-card style="width:300px;height:300px;display:flex;flex-direction:column;" class="m-3">
+
+    <a routerLink="/project-details/{{project._id}}"  class="no-hyperlink-decoration">
+        <mat-card-title style="font-size:1rem;">
+            <!--Checks if the length of the name is longer than 50 char. and slices if it is-->
+            {{(project.projectname?.length>50)?(project.projectname | slice:0:50) + '...':(project.projectname)}}
+        </mat-card-title>
+    </a>
+
+    <mat-card-subtitle style="font-size:.7rem;">
+        <i class="fas fa-user mr-2" style="color:#7c7676;cursor:pointer;" matTooltip="Open" [matTooltipPosition]="'above'"></i>
+        {{project?.authorDisplayName}} - {{project.created | date:'mediumDate' }}
+    </mat-card-subtitle>
+
+    <mat-card-content style="font-size:.9rem;height:200px;">
+        {{(project.description?.length>100)?(project.description | slice:0:100) + '...':(project.description)}}
+    </mat-card-content>
+
+    <mat-card-footer style="border-top:1px solid red;">
+        <div class="row no-gutters align-content-end pb-1 pt-1 m-2 justify-items-end">
+            
+            <div class="col-md" style="font-size:.7rem;">
+                <div matTooltip="{{allHashtags}}" [matTooltipPosition]="'above'" style="display:inline-block">
+                    {{truncatedHashtags}}
+                </div>
+            </div>
+            <div class="col-md-auto">
+                <!--Icons seen at the bottom of the card-->
+                <app-project-card-tools [project]="project"></app-project-card-tools>
+            </div>
+        </div>
+    </mat-card-footer>
+</mat-card>

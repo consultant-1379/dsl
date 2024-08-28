@@ -1,0 +1,36 @@
+<div>
+    <form [formGroup]="formProject">
+        <h2>Details</h2>
+        <div class="text-input">
+            <mat-form-field>
+                <input matInput (keydown)="changeFocus($event, 'category')" pattern="[A-Za-z_\d]([A-Za-z_\-. \d])*" id="name" placeholder="Project Name" formControlName="name" required/>
+            </mat-form-field>
+        </div>
+        <div class="text-input">
+            <mat-form-field>
+                <input matInput (keydown)="changeFocus($event, 'description')" id="category" placeholder="Category" formControlName="category"/>
+            </mat-form-field>
+        </div>
+        <div class="text-input">
+            <mat-form-field class="description-input">
+                <textarea matInput id="description" placeholder="Description" formControlName="description"></textarea>
+            </mat-form-field>
+        </div>
+        <div class="text-input">
+            <app-hashtag-chip-list></app-hashtag-chip-list>
+        </div>
+        <div>
+            <app-upload [uniqueId]="uniqueId" (fileUploaded)="onFileUploaded($event)" (fileUploadUndone)="onFileUploadUndone()"></app-upload>
+        </div>
+        <div class="file-selector" [hidden]="!filesHaveBeenUploaded">
+            <h1>Select your primary notebook or folder</h1>
+            <p>This is what will be linked from your project's page in DSL</p>
+            <app-file-selector></app-file-selector>
+        </div>
+        <button type="button" (click)="cancel()" mat-flat-button>Cancel</button>
+        <button id = "publishButton" (click)="createProject()" mat-flat-button [disabled]="!filesHaveBeenUploaded">Publish</button>
+    </form>
+    <div class="spinner" *ngIf="isLoading">
+        <mat-progress-spinner></mat-progress-spinner>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+
+/* Gradient background in header */
+.module-header {
+    background-image: url('../images/ie9-background.png');
+    background-repeat: repeat-x;
+    background-position: 0 0;
+
+    .top-bar-section, .top-bar-mobile {
+
+
+
+        &.sticky {
+            height: 50px;
+        }
+
+        &.sticky ul {
+            font-size: 0.875rem;
+            /*margin-top: 12px;*/
+            margin-bottom: 0;
+            height: 30px;
+
+            li {
+                float: left;
+
+                > a {
+                }
+            }
+        }
+    }
+     .search-container {
+    }
+}
+
+.separator-dark {
+}
+
+.module-footer {
+}
+/* Register form */
+#signUp-modal, #login-modal {
+    fieldset {
+        //width: 100%; // changed for ie
+        display: block; // changed for ie
+        position: relative; // changed for ie
+        .input-group-addon {
+            display: inline-block; // changed for ie
+            padding: 12px 0 0 0; // changed for ie
+            text-align: center;
+            height: 40px !important;
+            width: 40px !important;
+            border-radius: 4px; // changed for ie
+            margin: -7px -5px 0 0; // changed for ie
+            .fa-key {
+                margin-top: -8px; // slight adjustment for password icon
+            }
+        }
+
+        input:not(.button) {
+            width: 100%;
+            border-radius: 4px; // changed for ie
+            height: 40px;
+            padding-left: 10px; // changed for ie
+            display: inline-block; // changed for ie
+        }
+        select {
+            width: 100%;
+            border-radius: 4px; // changed for ie
+            height: 40px;
+            padding-left: 10px; // changed for ie
+            display: inline-block; // changed for ie
+        }
+        legend {
+            display: block; // changed for ie
+            text-align: left; // changed for ie
+            width: 100%;
+            margin-bottom: 2px;
+        }
+    }
+
+    input[type='checkbox'] {
+        padding: 0; /* changed for ie */
+        border: 0; /* changed for ie */
+        // width: 10% !important;
+        //  height: auto !important;
+        //  display: block !important;
+        //  margin-top: 5px;
+    }
+}

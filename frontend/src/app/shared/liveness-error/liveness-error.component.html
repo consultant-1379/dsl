@@ -1,0 +1,9 @@
+<div *ngIf="showError" class="liveness-error">
+    <i class="far fa-exclamation-triangle"></i>&nbsp;
+    <span>Data Science Lounge is experiencing some issues, some features may not work as expected.
+        Apologies for the inconvenience.</span>
+</div>
+
+<div *ngIf="!showError" class="everything-is-live">
+    <span>The issues have been resolved, Data Science Lounge is back to normal.</span>
+</div>

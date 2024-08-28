@@ -1,0 +1,82 @@
+<button type="button" class="close pull-right" aria-label="Close" (click)="onNoClick()">
+  <span aria-hidden="true">&times;</span>
+</button>
+<!--List comments-->
+<section *ngIf="isComments" class="row no-gutters m-0 p-0">
+
+    <div class="h5 col-12">Comments</div>
+    <div class="col-12 pt-2" style="height:200px;overflow:auto;">
+        <div *ngFor="let c of comments" class="row align-content-top no-gutters m-0 p-0 mb-3" style="font-size: 0.8rem;">
+            <div class="col-1">
+                <span class="fa-layers fa-fw fa-2x">
+                    <i class="fas fa-circle" style="color:#E54040;" data-fa-transform="grow-3"></i>
+                    <i class="fas fa-circle" style="color:#ddd;"></i>
+                    <span style="position:absolute;z-index:500;font-size:1.1rem;right:18%;">{{c.initials}}</span>
+                </span>
+            </div>
+            <div class="col-auto mr-2" style="font-weight:bold;">{{c.fullname}}</div>
+            <div class="col-4">{{c.created | date:'fullDate'}}</div>
+            <div class="col-4 deleteComment">
+                <div style="float:right;" *ngIf="c.user === user?._id">
+                    <span class="col-1" matTooltip="Delete this comment" (click)="deleteComment(c)">
+                        <span class="fal fa-trash-alt"></span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-11 offset-1">{{c.message}}</div>
+        </div>
+    </div>
+
+</section>
+<section *ngIf="!isComments" class="row">
+
+    <div class="h5 col-12">Comments</div>
+    <div class="col-12">No comments yet! {{dialog_msg}}</div>
+
+</section>
+
+<!--Posting-->
+<section class="row no-gutters m-0 p-0 mt-3" *ngIf="isPosting">
+    <div class="h5 col-12">Leave a comment</div>
+    <form class="col-12" [formGroup]="commentForm" novalidate>
+        <!-- <div *ngIf="isLoading" class="spinner-wrap">
+            <app-spinner></app-spinner>
+        </div> -->
+        <div class="row justify-content-end">
+            <mat-form-field class="col-12 py-2">
+                <textarea matInput placeholder="Write a reply" ngModel formControlName="user_msg"></textarea>
+            </mat-form-field>
+            <button class="btn btn-primary mr-3 d-block" type="button" (click)="onPostComment()">Post</button>
+        </div>
+    </form>
+
+</section>
+<!--Login-->
+<section *ngIf="isLogin">
+
+    <div class="modal-body sign-in-form row no-gutters">
+        <div class="h5 col-12">To leave a comment sign in first</div>
+        <!-- <div class="py-3 px-4 title-box">
+            <h2 class="mx-auto">Sign In to DataScience Lounge</h2>
+            <p class="mx-auto">Please use your Ericsson Signum credentials to sign in.</p>
+        </div> -->
+
+        <form class="row p-4" [formGroup]="firstFormGroup" novalidate>
+            <!-- <div *ngIf="isLoading" class="spinner-wrap">
+            <app-spinner></app-spinner>
+        </div> -->
+            <div *ngIf="!isLoading" class="row justify-content-end">
+                <mat-form-field class="col-sm-12 py-2">
+                    <input matInput placeholder="Username" ngModel formControlName="user_name" required>
+                </mat-form-field>
+                <mat-form-field class="col-sm-12 py-2">
+                    <input matInput type="password" placeholder="Password" ngModel formControlName="user_password" required (keydown)="enterToLogin($event)">
+                </mat-form-field>
+                <button class="btn btn-primary mr-3 d-block" type="button" (click)="onLogin()">Sign in</button>
+            </div>
+        </form>
+    </div>
+
+
+
+</section>

@@ -1,0 +1,32 @@
+{
+    "debugging": true,
+    "GITLAB_SERVER": "http://131.160.143.125:19080",
+    "BASE_URL_GITLAB": "http://131.160.143.125:19080/api/v4/",
+    "GITLAB_TOKEN": "fP0LKsL3lk8ElDSA",
+    "GITLAB_PRIVATE_TOKEN": "?private_token=fP0LKsL3lk8ElDSA",
+    "LOGIN": "http://localhost:3000/auth/login",
+    "DSL_BACKEND": {
+        "URL" : "http://localhost:3000"
+    },
+    "DATABASE": {
+        "COUCHDB": "http://eselivm3v259l.lmera.ericsson.se:58080/datascience",
+        "COUCHDB_LOCAL": "http://131.160.143.125:58080/datascience",
+        "COUCHDB_BASE_URL": "http://131.160.143.125:58080/datascience"
+    },
+    "GITLAB": {
+        "USER_BY_SIGNUM": "users?username=:userid",
+        "USER_CREATE": "users%token%",
+        "PROJECTS": "projects%token%",
+        "PROJECT_BY_ID": "projects/:projectid%token%",
+        "PROJECT_BY_USERNAME_AND_PROJECTNAME": "projects/:signum%2F:projectname",
+        "PROJECTS_CREATE": "projects/user/:userid%token%&visibility=public",
+        "PROJECTS_DELETE": "projects/:signum%2F:projectname%token%",
+        "PROJECTS_USERNAME": "users%token%&username=:username",
+        "PROJECTS_USER": "users/:userid/projects%token%",
+        "FILE_CREATE": "projects/:projectid/repository/files/:filepath",
+        "FILE_DELETE": "projects/:projectid/repository/files/:filepath%token%&branch=master&commit_message=deletefile&sudo=:user",
+        "FILE_GET": "projects/:projectid/repository/files/:filepath?ref=master",
+        "REPOSITORY": "projects/:projectid/repository/tree",
+        "REPOSITORY_FILES": "projects/:projectid/repository/tree?path=:filepath"
+    }
+}

@@ -1,0 +1,19 @@
+.liveness-error {
+  background-color: #ff9f15;
+  padding: 1em;
+  color: black;
+
+  .fa-exclamation-triangle {
+    color:red;
+  }
+
+  .fa-exclamation-square {
+    color:red;
+  }
+}
+
+.everything-is-live  {
+  background-color: #30bf30;
+  padding: 1em;
+  color: black;
+}

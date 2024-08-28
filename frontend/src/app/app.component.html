@@ -1,0 +1,6 @@
+<div class="app-component">
+  <app-header></app-header>
+  <app-liveness-error (displayLivenessErrorComponent)="setShowLivenessError($event)" [hidden]="!showLivenessError"></app-liveness-error>
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
+</div>

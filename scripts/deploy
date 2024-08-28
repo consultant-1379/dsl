@@ -1,0 +1,15 @@
+#! /usr/bin/env bash
+
+# Script to do single command deployment
+CONFIG=$1
+if [ "${CONFIG}" = "" ]; then
+    echo -e "No build config specified. Assuming production."
+    CONFIG=production
+fi
+
+echo "Deploying Ericsson Data Science Lounge..."
+./scripts/build-backend $CONFIG
+./scripts/build-frontend $CONFIG
+cd infrastructure
+docker-compose down
+docker-compose up -d --build

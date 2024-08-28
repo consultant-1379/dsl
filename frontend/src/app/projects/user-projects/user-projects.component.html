@@ -1,0 +1,29 @@
+<div class="container-fluid tabcontent">
+    <div class="row p-3 no-gutter justify-content-center">
+        <div class="col-md-12 text-center" *ngIf="selectedproject" style="border: 1px solid #fe0000;">
+            <h3>{{selectedproject.name}}
+                <br/>
+                <br/>
+                <small class="mt-2 text-muted">{{selectedproject.description}}</small>
+            </h3>
+        </div>
+    </div>
+    <div class="row no-gutter justify-content-start">
+        <div class="col-6" *ngIf="repoNotebooks.length>0">
+            <div class="row">
+                <div class="col-12 h5">Notebooks</div>
+                <div class="col-12" *ngFor="let d of repoNotebooks">{{d.name}}</div>
+            </div>
+        </div>
+        <div class="col-6" *ngIf="repoDatasets.length>0">
+            <div class="row">
+                <div class="col-12 h5">Datasets</div>
+                <div class="col-12" *ngFor="let d of repoDatasets">{{d.name}}</div>
+            </div>
+        </div>
+
+        <div class="col-md-12" *ngIf="repositories.toString().length==0">
+            <h3>Add a new project by clicking the '+' button!</h3>
+        </div>
+    </div>
+</div>

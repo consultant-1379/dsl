@@ -1,0 +1,61 @@
+.projects-main {
+    position: fixed;
+    width: 95vw;
+    height: 75vh;
+    .card-body {
+        height: 55vh;
+        overflow: auto;
+    }
+}
+
+.mat-tab-body.mat-tab-body-active {
+    overflow-x: visible;
+    overflow-y: visible;
+}
+
+.mat-list-item-content {
+    padding: 0 !important;
+}
+
+.mat-list-item.active {
+    border-bottom: 2px solid red;
+    display: table-cell;
+    &:after {
+        content: "";
+        display: table-cell;
+        width: 100%;
+    }
+}
+
+.mb-4{
+    background-color: #fff;
+}
+
+#workspace-title {
+    color: red;
+}
+
+#workspace-subtitle {
+    text-transform: none;
+    font-size: 0.7rem;
+    color: #494747;
+    margin-left: 20px;
+}
+
+.pr-4 {
+    border-left: 3px solid red;
+    text-transform: uppercase;
+}
+
+.col-12{
+    height:100%!important;
+    overflow:hidden;
+}
+
+.mr-1{
+    border-right: 1px solid #ccc;
+}
+
+#tabGroup {
+    min-height:50vh;
+}

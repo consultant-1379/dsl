@@ -1,0 +1,57 @@
+{
+    "debugging": true,
+    "BASE_URL_WORDPRESS": "http://analytics.ericsson.se:23307/wp-json/wp/v2/",
+    "GITLAB_SERVER": "http://131.160.143.94:19080",
+    "BASE_URL_GITLAB": "http://131.160.143.94:19080/api/v4/",
+    "BASE_URL_ZEPPELIN": "http://131.160.143.24:38080/",
+    "BASE_URL_ZEPPELIN_API": "http://131.160.143.24:38080/api/",
+    "GITLAB_TOKEN": "wsTaq4O4XSVYmuOa",
+    "GITLAB_PRIVATE_TOKEN": "?private_token=wsTaq4O4XSVYmuOa",
+    "LOGIN": "http://analytics.ericsson.se:23307/wp-json",
+    "BASE_URL_JUPYTER": "http://10.44.149.53:28889/",
+    "DSL_BACKEND": {
+        "URL" : "http://131.160.143.94:3000"
+    },
+    "WORDPRESS": {
+        "BLOG": "posts/:id",
+        "BLOGS": "posts?categories=27&per_page=50",
+        "LATESTBLOGS": "posts?categories=27&per_page=5",
+        "NEWS": "posts?categories=35&per_page=50",
+        "CATEGORY": "posts?categories=:catid&per_page=100",
+        "CATEGORIES": "categories?parent=:parent",
+        "CATEGORIES_ALL": "categories?per_page=100",
+        "POSTS": "posts",
+        "USERS": "users?per_page=100",
+        "USER": "users/:userid",
+        "DOC": "pages?slug=:docname",
+        "DOC_PREVIEW": "pages/:id/revisions/?_wpnonce=:nonce",
+        "SEARCH": "search/:keyword",
+        "SEARCHPOSTS": "posts?per_page=100&search=:keyword",
+        "SAVEPOST": "posts"
+    },
+    "DATABASE": {
+        "COUCHDB": "http://eselivm3v259l.lmera.ericsson.se:58080/datascience",
+        "COUCHDB_LOCAL": "http://131.160.143.94:58080/datascience",
+        "COUCHDB_BASE_URL": "http://131.160.143.94:58080"
+    },
+    "GITLAB": {
+        "USER_BY_SIGNUM": "users?username=:userid",
+        "USER_CREATE": "users%token%",
+        "PROJECTS": "projects%token%",
+        "PROJECT_BY_ID": "projects/:projectid%token%",
+        "PROJECT_BY_USERNAME_AND_PROJECTNAME": "projects/:signum%2F:projectname",
+        "PROJECTS_CREATE": "projects/user/:userid%token%&visibility=public",
+        "PROJECTS_DELETE": "projects/:signum%2F:projectname%token%",
+        "PROJECTS_USERNAME": "users%token%&username=:username",
+        "PROJECTS_USER": "users/:userid/projects%token%",
+        "FILE_CREATE": "projects/:projectid/repository/files/:filepath",
+        "FILE_DELETE": "projects/:projectid/repository/files/:filepath%token%&branch=master&commit_message=deletefile&sudo=:user",
+        "FILE_GET": "projects/:projectid/repository/files/:filepath?ref=master",
+        "REPOSITORY": "projects/:projectid/repository/tree",
+        "REPOSITORY_FILES": "projects/:projectid/repository/tree?path=:filepath"
+    },
+    "ZEPPELIN": {
+        "CREATE": "notebook",
+        "GET": "notebook/:id"
+    }
+}

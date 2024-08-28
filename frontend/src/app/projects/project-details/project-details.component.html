@@ -1,0 +1,50 @@
+<div class="project-details">
+    <div class="project-details-header">
+        <div style="border-left: 5px solid red;">
+            <span class="title" style="font-size: 2rem; text-transform: uppercase;">{{project.projectname}}</span>
+            <span class="subtitle"></span>
+        </div>
+    </div>
+    <div class="project-details-content">
+        <div class="large-card">
+
+            <h1><b>Project Description</b></h1>
+            <div style="padding: .75rem 0rem .75rem 0rem">
+                <p>
+                    <font size="4">{{project.description}}</font>
+                </p>
+                <br>
+                <p>
+                    <p>
+                        <font size="3">Author: {{project?.authorDisplayName}}</font>
+                    </p>
+                    <p>
+                        <p>
+                            <font size="3">Published: {{ project.created | date:'medium' }}</font>
+                        </p>
+            </div>
+        </div>
+
+        <div class="project-details-footer">
+            <div class="row">
+                <div class="col-4">
+                    <span *ngFor="let hashtag of project.hashtags" style="font-size: 0.9rem">
+                        #{{hashtag}}
+                    </span>
+                </div>
+                <div class="col-4">
+                    <div class="mx-auto" style="text-align: center">
+                        <a target="#" href="{{this.viewProjectLink}}" (click)="onViewProjectClick($event)">
+                            <button class="btn" type="button">View Project</button>
+                        </a>
+                    </div>
+
+                </div>
+                <div class="col-4">
+                    <app-project-card-tools [project]="project"></app-project-card-tools>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

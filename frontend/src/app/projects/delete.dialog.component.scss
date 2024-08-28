@@ -1,0 +1,11 @@
+ul {
+    text-align:center;
+    font-family: EricssonHilda-Light, Arial, sans-serif;
+}
+li {
+    display:inline-block;
+    *display:inline; /*IE7*/
+    margin-right:10px;
+    margin-top: 20px;
+    font-family: EricssonHilda-Light, Arial, sans-serif;
+}

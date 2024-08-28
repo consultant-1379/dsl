@@ -1,0 +1,52 @@
+/*.or-spacer-vertical {
+  display:inline-block;
+  margin-top:-37px; margin-left:100px; 
+  position:relative; 
+  
+  .mask { 
+    overflow:hidden; width:20px; min-height:50px; 
+    //outline:1px solid pink;
+  }
+  &.left .mask:after { 
+    content:''; 
+    display:block; margin-left:-20px;
+    width:20px; height:100%;  
+    border-radius:12px / 125px;  
+    box-shadow:0 0 8px black;
+  }
+  &.right .mask:before { 
+    content:''; 
+    display:block; margin-left:20px;
+    width:20px; height:100%; 
+    border-radius:12px / 125px; 
+    box-shadow:0 0 5px #0071c5;
+  }
+}*/
+
+
+$spacer-width: 2px;
+$spacer-height: 57px;
+$spacer-position: "-";
+$spacer-blur: 5px;
+$spacer-color: #0071c5;
+
+.separator-dark {
+	height: $spacer-height;
+	overflow: hidden;
+	width: $spacer-width;
+    margin-top: -7px;
+	&:after {
+		border-radius: 12px / 125px;
+    box-shadow: 0 0 $spacer-blur $spacer-color;
+		content: "";
+		display: block;
+		height: 100%;
+		position: relative;
+    @if $spacer-width > $spacer-height {
+      top: #{$spacer-position}100%;
+    }
+    @else {
+      left: #{$spacer-position}100%;
+    }
+	}
+}

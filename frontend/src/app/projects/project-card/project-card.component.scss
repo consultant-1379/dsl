@@ -1,0 +1,35 @@
+.mat-card-title {
+    margin: -24px -24px 0px -24px !important;
+    padding: 24px;
+    background-color: #ff2000;
+}
+
+@media (max-width: 599px){
+    .mat-card-title {
+        margin: -24px -16px 0px -16px !important;
+    }
+}
+
+.mat-card-subtitle {
+    margin-top: 15px !important;
+}
+
+.mat-card-content {
+    padding-top: 1rem;
+}
+
+
+.no-hyperlink-decoration {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.mat-card-footer {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.mat-card-footer > .row {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}

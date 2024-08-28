@@ -1,0 +1,16 @@
+# Dockerfile.cron
+#
+# This Dockerfile is based on a Docker forum post "Running cronjob in debian jessie container".
+#
+# Koval, D (2017) cron-entrypoint.sh [Dockerfile]
+# https://forums.docker.com/t/running-cronjob-in-debian-jessie-container/17527/6
+#
+# 2018-06-29 - Added xz-utils package to build - alanna.kelly@ericsson.com
+
+FROM debian:jessie
+RUN apt-get update && apt-get install -y cron xz-utils && \
+    rm -r /var/lib/apt/lists/*
+COPY cron-entrypoint.sh /cron-entrypoint.sh
+RUN chmod +x /cron-entrypoint.sh
+RUN touch /var/log/cron.log
+ENTRYPOINT ["/cron-entrypoint.sh"]

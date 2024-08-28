@@ -1,0 +1,57 @@
+.header {
+    .ericsson-logo {
+        float: right;
+        background: url(/assets/images/ich.png) no-repeat scroll -275px -3px transparent;
+        display: block;
+        height: 28px;
+        width: 21px;
+        margin: 0 2rem 0 -18px;
+        text-indent: -999em;
+    }
+    .half-circle {
+        width: 90px;
+        height: 40px;
+        background-color: #f8f9fa;
+        border-bottom-left-radius: 100px;
+        border-bottom-right-radius: 100px;
+        border: 3px solid red;
+        border-top: 3px solid #f8f9fa;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        position: absolute;
+        left: 5px;
+        top: 70px;
+        padding-bottom: 45px;
+        z-index: -1;
+    }
+    .nav-link {
+        font-size: 1.2rem;
+        color: #111;
+        cursor: pointer;
+        padding: 0 4px 0 4px;
+        &:hover {
+            color: #fb0000 !important;
+        }
+        &.search {
+            margin-left: 20px;
+            margin-right: 25px;
+        }
+    }
+    button:focus {
+        outline: none;
+    }
+    .dropdown-menu {
+        left: -100px !important;
+    }
+    .dropdown-toggle {
+        background-color: transparent;
+        border: none;
+    }
+    .menu-user {
+        .dropdown-toggle {
+            background: none;
+            border: none;
+        }
+    }
+}

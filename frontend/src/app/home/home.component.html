@@ -1,0 +1,46 @@
+<div class="content home">
+    <app-herobox></app-herobox>
+    <section class="latest col rounded-0" style="background-color: #aeafad;">
+        <div class="row">
+            <section class="col">
+                <div>
+                    <div class="tb row align-items-end project-list-header">
+                            <h1 class="col ml-2 pl-2" style="border-left: 3px solid red;text-transform: uppercase;">
+                                <span style="color:red;">Featured</span> Projects <span style="text-transform:  none;font-size: 0.7rem;color: #494747;margin-left: 20px;">Popular and featured projects</span></h1>
+                    </div>
+                    <div>
+                        <app-project-list [projects]="featuredProjects"></app-project-list>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+    <section class="contribute-box rounded-0">
+        <div class="row no-gutters align-items-center">
+            <div class="col-12" style=" background-color: #797a77; padding: 0.9rem 14rem 0.9rem 14rem;">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="container" style="text-transform:  uppercase;">Log in to upload and share your Jupyter notebook.</div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </section>
+    <section class="latest col rounded-0" style="background-color: #aeafad;">
+        <div class="row">
+            <section class="col">
+                    <div>    
+                        <div class="tb row align-items-end project-list-header">
+                                <h1 class="col ml-2 pl-2" style="border-left: 3px solid red;text-transform: uppercase;">
+                                    <span style="color:red;">Latest</span> Projects
+                                    <span style="text-transform:  none;font-size: 0.7rem;color: #494747;margin-left: 20px;">The newest additions to DSL</span>
+                                </h1>
+                        </div>
+                        <div>
+                            <app-project-list [projects]="latestProjects"></app-project-list>
+                        </div>
+                    </div>
+            </section>
+        </div>
+    </section>
+</div>

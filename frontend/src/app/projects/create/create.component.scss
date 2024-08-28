@@ -1,0 +1,30 @@
+.mat-flat-button
+{
+    background-color:#f44336;
+    margin:10px;
+    font-weight: 600;
+    color: #333;
+}
+.text-input
+{
+    margin:10px
+}
+
+.file-selector {
+    border: 1px solid #f1f0ef;
+    border-radius:.5em;
+    padding: 1em;
+    margin-bottom: 1.25em;
+}
+
+.description-input {
+    width: 70%;
+}
+
+.description-input textarea{
+    height: 5em;
+}
+
+.spinner {
+    z-index: 10;
+}

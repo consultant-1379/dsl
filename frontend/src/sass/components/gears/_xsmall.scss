@@ -1,0 +1,261 @@
+* {
+    box-sizing: border-box;
+    &:focus {
+        outline: none;
+    }
+}
+
+$color-green: #45b5a9;
+$color-green-dark: #3a998f;
+.gear {
+    border-radius: 50%;
+    float: left;
+    margin: 20px;
+    position: relative;
+    &.one,
+    &.three .one {
+        animation: spin 20s ease 3;
+        animation-fill-mode: forwards;
+        animation-play-state: running;
+        animation-direction: alternate;
+        border: 40px solid $color-green;
+        height: 160px;
+        margin: 60px;
+        width: 160px;
+        // transform: scale(.7);
+        &:hover {
+            animation-play-state: running;
+            animation: spin 20s ease 3;
+        }
+        .tooth {
+            border-bottom: 24px solid $color-green;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            height: 0;
+            left: 32px;
+            position: absolute;
+            top: -60px;
+            transform-origin: center 100px;
+            width: 16px;
+            &:before,
+            &:after {
+                border-bottom: 24px solid $color-green;
+                border-left: 6px solid transparent;
+                border-right: 6px solid transparent;
+                content: "";
+                height: 0;
+                left: -6px;
+                position: absolute;
+                transform: rotate(15deg);
+                transform-origin: center 100px;
+                width: 4px;
+            }
+            &:after {
+                transform: rotate(-15deg);
+            }
+        }
+    }
+    &.two {
+        animation: spin 9s linear infinite;
+        animation-fill-mode: forwards;
+        animation-play-state: paused;
+        background: transparent;
+        height: 200px;
+        width: 200px;
+        &:before {
+            animation: spinReverse 9s linear infinite;
+            animation-fill-mode: forwards;
+            animation-play-state: paused;
+            background: linear-gradient(top, $color-green 40%, $color-green-dark 80%);
+            border-radius: 50%;
+            content: "";
+            display: block;
+            height: 100%;
+            width: 100%;
+        }
+        &:after {
+            background: #fff;
+            border-radius: 50%;
+            content: "";
+            height: 80px;
+            left: 60px;
+            position: absolute;
+            top: 60px;
+            width: 80px;
+        }
+        &:hover {
+            animation-play-state: running;
+            &:before {
+                animation-play-state: running;
+            }
+        }
+        .tooth {
+            border-bottom: 20px solid #fff;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            height: 0;
+            left: 88px;
+            position: absolute;
+            bottom: -2px;
+            transform-origin: center -82px;
+            width: 24px;
+            &:before,
+            &:after {
+                border-bottom: 20px solid #fff;
+                border-left: 8px solid transparent;
+                border-right: 8px solid transparent;
+                content: "";
+                height: 0;
+                left: -8px;
+                position: absolute;
+                transform: rotate(-15deg);
+                transform-origin: center -82px;
+                width: 8px;
+            }
+            &:after {
+                transform: rotate(15deg);
+            }
+        }
+    }
+    &.three {
+        &:hover {
+            .one,
+            .two,
+            .three {
+                animation-play-state: running;
+                animation: spinReverse 32.75s ease 3;
+            }
+        }
+        .one {
+            border-radius: 50%;
+            margin: 20px;
+        }
+        .two {
+            animation: spinReverse 32.75s ease 3;
+            animation-fill-mode: forwards;
+            animation-play-state: running;
+            border: 5px solid $color-green;
+            border-radius: 50%;
+            height: 108px;
+            right: -70px;
+            bottom: -62px;
+            position: absolute;
+            width: 108px;
+            .tooth {
+                border-bottom: 20px solid $color-green;
+                border-left: 6px solid transparent;
+                border-right: 6px solid transparent;
+                height: 0;
+                left: 41px;
+                position: absolute;
+                top: -20px;
+                transform-origin: center 70px;
+                width: 16px;
+                &:before,
+                &:after {
+                    border-bottom: 20px solid $color-green;
+                    border-left: 6px solid transparent;
+                    border-right: 6px solid transparent;
+                    content: "";
+                    height: 0;
+                    left: -6px;
+                    position: absolute;
+                    transform: rotate(20deg);
+                    transform-origin: center 70px;
+                    width: 4px;
+                }
+                &:after {
+                    transform: rotate(-20deg);
+                }
+            }
+        }
+        .three {
+            animation: spinReverse 22.375s ease 4;
+            animation-fill-mode: forwards;
+            animation-play-state: running;
+            border: 16px solid $color-green;
+            border-radius: 50%;
+            height: 52px;
+            right: 44px;
+            bottom: -84px;
+            position: absolute;
+            width: 52px;
+            .tooth {
+                border-bottom: 20px solid $color-green;
+                border-left: 6px solid transparent;
+                border-right: 6px solid transparent;
+                height: 0;
+                left: 2px;
+                position: absolute;
+                top: -26px;
+                transform-origin: center 36px;
+                width: 16px;
+                &:before,
+                &:after {
+                    border-bottom: 20px solid $color-green;
+                    border-left: 6px solid transparent;
+                    border-right: 6px solid transparent;
+                    content: "";
+                    height: 0;
+                    left: -6px;
+                    position: absolute;
+                    transform: rotate(40deg);
+                    transform-origin: center 36px;
+                    width: 4px;
+                }
+                &:after {
+                    transform: rotate(-40deg);
+                }
+            }
+        }
+    }
+}
+
+$tooth-sets: 9;
+@for $i from 0 to $tooth-sets {
+    .gear {
+        &.one,
+        &.two,
+        &.three .one {
+            .tooth {
+                &:nth-child(#{$i}) {
+                    transform: rotate(($i - 1) * 45deg);
+                }
+            }
+        }
+        &.three {
+            .two {
+                .tooth {
+                    &:nth-child(#{$i}) {
+                        transform: rotate(($i - 1) * 60deg);
+                    }
+                }
+            }
+            .three {
+                .tooth {
+                    &:nth-child(#{$i}) {
+                        transform: rotate(($i - 1) * 120deg);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spinReverse {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-360deg);
+    }
+}

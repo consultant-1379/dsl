@@ -1,0 +1,110 @@
+.home {
+    &.content {
+        margin-left: 30px;
+        margin-right: 30px;
+        margin-top: 0px;
+        section {
+            border-radius: 6px;
+        }
+        .herobox {
+            background-image: url('/assets/images/bgheader.png');
+            background-size: 100% 70%;
+            background-repeat: no-repeat;
+            background-position-y: -105px;
+            padding: 0 !important;
+            min-height: 700px;
+            position: relative;
+            overflow: hidden;
+            .motto {
+                div {
+                    font-family: EricssonHilda-Bold, Arial, sans-serif;
+                    text-transform: uppercase;
+                    font-size: 3rem;
+                }
+                width: 200px;
+                position: absolute;
+                top: 13%;
+                left: 5%;
+            }
+            .top {
+                background: #fdfdfd;
+                position: absolute;
+                bottom: 0;
+                border-radius: 0 0 5px 5px;
+                color: #111;
+                .banner {
+                    background-color: #ccc;
+                    color: #887f7f;
+                    padding: 20px;
+                }
+            }
+            .hero-header {
+                font-family: EricssonHilda-Bold, Arial, sans-serif;
+                font-variant: small-caps;
+                font-size: 1.3rem;
+            }
+            .bodytext {
+                font-size: 0.9rem;
+                margin-left: 31%;
+                padding-right: 58%;
+            }
+            .arrow-up {
+                width: 0;
+                height: 0;
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-bottom: 5px solid black;
+            }
+            .arrow-down {
+                width: 0;
+                height: 0;
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-top: 10px solid #f00;
+                position: relative;
+                top: 8px;
+            }
+            .line-h {
+                width: 20%;
+                margin-left: 40%;
+                border-top: 3px solid red !important;
+            }
+            .arrow-right {
+                width: 0;
+                height: 0;
+                border-top: 60px solid transparent;
+                border-bottom: 60px solid transparent;
+                border-left: 60px solid green;
+            }
+            .arrow-left {
+                width: 0;
+                height: 0;
+                border-top: 10px solid transparent;
+                border-bottom: 10px solid transparent;
+                border-right: 10px solid blue;
+            }
+        }
+    }
+    .activity {
+        background-color: #eaedef;
+        position: relative;
+        padding-bottom: 20px;
+    }
+    .arrow-up {
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid #fff;
+    }
+    .latest h1.tab {
+        font-size: 1.2rem !important;
+        color: #fff;
+    }
+    .latest h1.tab .active {
+        border-bottom: 4px solid #fff;
+    }
+    .latest h1.tab>span:hover {
+        border-bottom: 4px solid #fff;
+    }
+}

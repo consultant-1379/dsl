@@ -1,0 +1,87 @@
+p {
+    font-family: $primaryFont;
+    font-size: 0.875rem; // 14px //
+    line-height: 1.375rem; // 22px //
+}
+
+a {
+    text-decoration: underline;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.bold {
+    font-family: $customBoldFont;
+    font-weight: bolder;
+}
+
+// Headings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $primaryFont;
+    font-style: normal;
+    font-weight: normal;
+    color: $primaryDark;
+    margin: 1rem 0;
+    line-height: 1.3rem;
+}
+
+h1 {
+    font-size: 1.25rem;
+}
+
+
+/* 20px */
+
+h2 {
+    font-size: 1.5rem;
+    padding: 10px;
+    color: #e4e7e8;
+}
+
+
+/* 16px */
+
+h3 {
+    font-size: 1.125rem;
+    /* 18px */
+    margin-top: 0;
+    padding-top: 0;
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+h4 {
+    font-size: 1.0625rem;
+}
+
+
+/* 17pt */
+
+.similarItemsCol h1 {
+    margin-top: -3px;
+}

@@ -1,0 +1,88 @@
+# Docker compose file for DSL server.
+
+version: "3"
+
+services:
+  gitlab:
+    image: 'gitlab/gitlab-ce:latest'
+    restart: always
+    container_name: "gitlab"
+    hostname: 'localhost'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://localhost'
+        gitlab_rails['gitlab_shell_ssh_port'] = 2224
+        # Add any other gitlab.rb configuration here, each on its own line
+    ports:
+      - '19080:80'
+      - '443:443'
+      - '2224:22'
+    volumes:
+      - ${DSL_DATA}/gitlab/config:/etc/gitlab
+      - ${DSL_DATA}/gitlab/logs:/var/log/gitlab
+      - ${DSL_DATA}/gitlab/data:/var/opt/gitlab
+      - ${DSL_DATA}/jupyter:/tmp/working
+      - ${DSL_DATA}/creds:/tmp/creds
+      - ${DSL_DATA}/frontend/:/tmp/frontend
+      - ${PWD}/dsl-wrapper:/assets/dsl-wrapper
+      - ${PWD}/wait-for-it/wait-for-it.sh:/assets/wait-for-it.sh
+      - ${PWD}/post-live-init:/assets/post-live-init
+    environment:
+      - DOCKER_NETWORK=dsl-container-network
+      - GITLAB_ROOT_PASSWORD=password
+      - LDAP_PASSWORD=${LDAP_PASSWORD}
+      - GITLAB_URL=${GITLAB_URL}
+      - BACKEND_URL=${BACKEND_URL}
+      - COUCHDB_URL=${COUCHDB_URL}
+    entrypoint:
+      - /assets/dsl-wrapper
+
+  # FIXME: Automatically create "datascience" DB.
+  couchdb:
+    image: 'couchdb'
+    restart: always
+    container_name: "couchdb"
+    hostname: 'localhost'
+    command: couchdb --with-admin-party-please
+    ports:
+      - '58080:5984'
+    volumes:
+      - ${DSL_DATA}/couchdb/data:/opt/couchdb/data
+      - ${PWD}/config/local.ini:/opt/couchdb/etc/local.ini
+    environment:
+      - DOCKER_NETWORK=dsl-container-network
+
+  cron:
+    build:
+      context: ./
+      dockerfile: Dockerfile.cron
+    container_name: 'cron'
+    volumes:
+      - ${DSL_DATA}/log:/var/log
+      - ${DSL_DATA}/couchdb/data:/opt/couchdb/data
+      - ${DSL_DATA}/couchdb/etc:/opt/couchdb/etc
+      - ${DSL_DATA}/couchdb/backup:/opt/couchdb/backup
+      - ${PWD}/backup-couchdb.sh:/opt/couchdb/backup-couchdb.sh
+    command:
+      - '0 * * * * /opt/couchdb/backup-couchdb.sh >> /var/log/cron.log 2>&1'
+
+  dsl-frontend:
+    build:
+      context: ../frontend/.
+    container_name: "dsl-frontend"
+    volumes:
+      - ${DSL_DATA}/creds/frontend:/usr/share/nginx/html/assets/config
+    ports:
+      - "80:80"
+
+  dsl-backend:
+    build:
+      context: ../backend/.
+    container_name: "dsl-backend"
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ${DSL_DATA}/creds/backend:/tmp/backend
+    ports:
+      - "3000:3000"
+

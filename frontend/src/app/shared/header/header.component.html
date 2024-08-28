@@ -1,0 +1,65 @@
+<div class="header w-100 fixed-top">
+    <div class="w-100 bg-light p-0">
+        <div class="row no-gutters justify-content-between align-items-center">
+            <div class="navbar-logo col">
+                <div class="row no-gutters align-items-center justify-content-between">
+                    <div class="col-auto p-0">
+                        <img class="ml-3" src="/assets/images/chairlogo.png" alt="DSL Logo" />
+                        <a id = 'logo-link' [routerLink]="['/']">
+                            <i class="icon icon-econ"></i>
+                            <span id = 'ds-title'>DATASCIENCE</span> LOUNGE
+                        </a>
+                    </div>
+
+                    <nav class="pl-2 pt-0 navbar col-sm-8" style="margin-right: 4em">
+                        <div id ='nav-div'></div>
+                        <a [routerLink]="['/projects']" class="nav-link">projects</a>
+                        |
+                        <a [routerLink]="['/']" class="nav-link">competitions</a>
+                        |
+                        <a [routerLink]="['/']" class="nav-link">blogs</a>                        
+                        |
+                        <a [routerLink]="['/']" class="nav-link">links & resources</a>
+                        <div id ='nav-div'></div>
+
+
+                        <div class="nav-link search">
+                            <mat-form-field class="example-full-width">
+                                <input matInput value="" type="search">
+                            </mat-form-field><span class="fas fa-1x fa-search"></span>
+                        </div>
+
+                        <div *ngIf="!userlogged" (click)="onLogin()" class="nav-link">
+                            <span class="fab fa-1x fa-hubspot"></span>login</div>
+                        <div class="btn-group" dropdown *ngIf="userlogged">
+                            <button dropdownToggle type="button" class="dropdown-toggle">
+                                <span class="fa-layers fa-fw fa-2x">
+                                    <i class="fas fa-circle" data-fa-transform="grow-3"></i>
+                                    <i class="fas fa-circle" style="color:#4A4A4A;"></i>
+                                    <span id = 'dropdown-icon-span'>{{userInitials}}</span>
+                                </span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul *dropdownMenu class="dropdown-menu dropdown-menu-left" role="menu" placement="bottom left">
+                                <li role="menuitem">
+                                    <a class="dropdown-item" [routerLink]="['/workspace']">workspace</a>
+                                </li>
+                                <li role="menuitem">
+                                    <a class="dropdown-item" (click)="onLogout()">logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                    </nav>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="nav-top-border">
+        <div class="nav-bottom-border"></div>
+    </div>
+
+</div>

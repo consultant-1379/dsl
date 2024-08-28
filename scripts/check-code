@@ -1,0 +1,6 @@
+#! /usr/bin/env bash
+
+cd backend
+npx npm run pretest
+cd ../frontend
+ng lint

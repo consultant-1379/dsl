@@ -1,0 +1,13 @@
+#! /usr/bin/env bash
+
+CONFIG=$1
+if [ "${CONFIG}" = "" ]; then
+    echo -e "No build config specified.\n\nUsage: ./scripts/build-frontend <CONFIG>"
+    exit -1
+fi
+
+echo "Building frontend for user ${CONFIG}..."
+cd frontend
+rm -rf dist node_modules # Clean  
+npx npm install
+npx ng build -c ${CONFIG}

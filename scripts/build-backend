@@ -1,0 +1,16 @@
+#! /usr/bin/env bash
+
+CONFIG=$1
+if [ "${CONFIG}" = "" ]; then
+    echo -e "No build config specified.\n\nUsage: ./scripts/build-backend <CONFIG>"
+    exit -1
+fi
+
+echo "Building backend..."
+cd backend
+npx npm run clean
+rm -rf node_modules
+npx npm install
+npx npm run build ${CONFIG}
+
+

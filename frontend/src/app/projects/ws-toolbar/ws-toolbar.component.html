@@ -1,0 +1,17 @@
+<div class="row wstoolbar" *ngIf="isToolbar">
+
+    <div>
+        <p>
+            <!-- Projects toolbar -->
+            <span class="col-1" matTooltip="Add a new project" (click)="createProject()">
+                <span class="fa fa-plus"></span>
+            </span>
+
+            <span class="col-1" matTooltip="Delete this project" (click)="deleteProject()">
+                <span class="fal fa-trash-alt"></span>
+            </span>
+
+        </p>
+    </div>
+
+</div>
